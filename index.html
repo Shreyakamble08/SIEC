@@ -1,399 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIEC Water</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SIEC | Sustainable Integrated Environmental Consultants</title>
+    <meta name="description" content="SIEC provides comprehensive environmental consulting services. We help organizations navigate sustainability challenges with innovative, data-driven solutions for a greener future.">
+    <meta name="keywords" content="environmental consulting, sustainability, ESG, impact assessment, compliance, ecological stewardship">
+    <meta name="author" content="SIEC">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Tailwind CSS + Google Fonts + Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --water:#2CB8C9;
-  --water-light:#8EDCF3;
-  --green:#7BC35A;
-  --green-dark:#5FAF48;
-
-  --dark:#0F172A;
-  --text:#334155;
-
-  --bg:#F8FCFD;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-h1,h2,h3,h4{
-  font-family:'Space Grotesk',sans-serif;
-}
-
-.hero-bg{
-  background:
-  radial-gradient(circle at 15% 20%,rgba(44,184,201,.15),transparent 25%),
-  radial-gradient(circle at 85% 50%,rgba(123,195,90,.12),transparent 35%),
-  linear-gradient(
-  180deg,
-  #ffffff 0%,
-  #f8fcfd 50%,
-  #eefaf7 100%);
-}
-
-.glass{
-  backdrop-filter:blur(20px);
-  background:rgba(255,255,255,.75);
-  border:1px solid rgba(44,184,201,.15);
-  box-shadow:0 10px 40px rgba(44,184,201,.08);
-}
-
-.water-orb{
-  width:500px;
-  height:500px;
-  border-radius:50%;
-
-  background:
-  radial-gradient(
-  circle at 30% 30%,
-  #8EDCF3,
-  #2CB8C9 40%,
-  rgba(123,195,90,.4) 70%
-  );
-
-  filter:blur(40px);
-  opacity:.5;
-
-  animation:float 6s ease-in-out infinite;
-}
-
-@keyframes float{
-  0%,100%{
-    transform:translateY(0);
-  }
-  50%{
-    transform:translateY(-30px);
-  }
-}
-
-.scroll-line{
-  animation:scroll 2s infinite;
-}
-
-@keyframes scroll{
-  0%{
-    transform:translateY(0);
-    opacity:1;
-  }
-  100%{
-    transform:translateY(18px);
-    opacity:0;
-  }
-}
-
-.section-label{
-  letter-spacing:4px;
-}
-</style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom Tailwind Config Override -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'siac-primary': '#0F3B2C',    // Deep forest green - trust, nature, premium
+                        'siac-secondary': '#D4AF37',  // Metallic gold - excellence, value, leadership
+                        'siac-accent': '#2C7A5E',     // Vibrant green - growth, sustainability
+                        'siac-light': '#F4F7F6',      // Off-white - clean, modern
+                        'siac-dark': '#1A2E25',       // Dark green - depth
+                        'siac-gray': '#5A6B66',       // Muted gray for text
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards',
+                        'fade-in': 'fadeIn 0.6s ease forwards',
+                        'scale-up': 'scaleUp 0.4s ease forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: { from: { opacity: 0, transform: 'translateY(30px)' }, to: { opacity: 1, transform: 'translateY(0)' } },
+                        fadeIn: { from: { opacity: 0 }, to: { opacity: 1 } },
+                        scaleUp: { from: { transform: 'scale(0.95)', opacity: 0 }, to: { transform: 'scale(1)', opacity: 1 } },
+                        float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-10px)' } },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { scroll-behavior: smooth; }
+        .section-reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .section-reveal.revealed { opacity: 1; transform: translateY(0); }
+        .hover-gold:hover { color: #D4AF37 !important; transition: color 0.2s; }
+        .service-card { transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.15); }
+        .nav-link::after { content: ''; display: block; width: 0; height: 2px; background: #D4AF37; transition: width 0.3s; margin-top: 4px; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        input, textarea { transition: all 0.2s; }
+        input:focus, textarea:focus { border-color: #D4AF37; ring: 2px solid rgba(212, 175, 55, 0.2); outline: none; }
+    </style>
 </head>
+<body class="font-sans antialiased bg-white text-siac-dark">
 
-<body>
-
-    <!-- NAVBAR -->
-<nav class="fixed top-0 left-0 w-full z-50 px-6 lg:px-12 py-5">
-
-  <div class="glass rounded-full px-8 py-4 flex items-center justify-between">
-
-    <div class="flex items-center gap-3">
-
-      <img
-        src="/Images/logo.jpeg"
-        alt="SIEC Water"
-        class="h-12 object-contain">
-
-    </div>
-
-    <div class="hidden lg:flex gap-10 text-slate-700 font-medium">
-
-      <a href="#">Solutions</a>
-      <a href="#">Technology</a>
-      <a href="#">Industries</a>
-      <a href="#">Sustainability</a>
-      <a href="#">Contact</a>
-
-    </div>
-
-    <button
-      class="bg-[#2CB8C9] hover:bg-[#25a8b8]
-      text-white px-6 py-3 rounded-full transition">
-
-      Get Consultation
-
-    </button>
-
-  </div>
-
-</nav>
-    <!-- HERO -->
-
-<section class="hero-bg min-h-screen flex items-center relative overflow-hidden">
-
-  <div
-    class="absolute right-[-120px] lg:right-16 top-1/2 -translate-y-1/2">
-
-    <div class="water-orb"></div>
-
-  </div>
-
-  <div
-    class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-10 items-center">
-
-    <div>
-
-      <span
-        class="inline-block text-[#2CB8C9]
-        uppercase tracking-[4px]
-        text-xs mb-6">
-
-        Water Intelligence Platform
-
-      </span>
-
-      <h1
-        class="text-slate-900
-        text-5xl
-        md:text-7xl
-        lg:text-8xl
-        font-bold
-        leading-[0.95]">
-
-        Engineering
-        Sustainable
-        Water Futures
-
-      </h1>
-
-      <p
-        class="text-slate-600
-        text-lg
-        mt-8
-        max-w-xl
-        leading-relaxed">
-
-        Delivering intelligent water treatment,
-        wastewater recycling, digital monitoring,
-        and sustainable infrastructure solutions
-        for industries, municipalities and future-ready communities.
-
-      </p>
-
-      <div class="flex flex-wrap gap-4 mt-10">
-
-        <button
-          class="bg-[#2CB8C9]
-          hover:bg-[#25A8B8]
-          text-white
-          px-8 py-4
-          rounded-full
-          font-semibold">
-
-          Explore Solutions
-
-        </button>
-
-        <button
-          class="border
-          border-[#2CB8C9]/30
-          text-slate-700
-          px-8 py-4
-          rounded-full">
-
-          Our Technologies
-
-        </button>
-
-      </div>
-
-      <div class="flex flex-wrap gap-3 mt-12">
-
-        <span class="px-4 py-2 rounded-full bg-white shadow">
-          WTP
-        </span>
-
-        <span class="px-4 py-2 rounded-full bg-white shadow">
-          STP
-        </span>
-
-        <span class="px-4 py-2 rounded-full bg-white shadow">
-          ETP
-        </span>
-
-        <span class="px-4 py-2 rounded-full bg-white shadow">
-          ZLD
-        </span>
-
-        <span class="px-4 py-2 rounded-full bg-white shadow">
-          Digital Twin
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <div
-    class="absolute bottom-10 left-1/2 -translate-x-1/2">
-
-    <div class="flex flex-col items-center">
-
-      <span class="text-slate-500 text-xs uppercase mb-2">
-        Scroll
-      </span>
-
-      <div class="w-[1px] h-12 bg-slate-300">
-
-        <div
-          class="scroll-line w-full h-4 bg-[#2CB8C9]">
+    <!-- ================= GLOBAL HEADER ================= -->
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo & Brand -->
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-siac-primary rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">S</span>
+                </div>
+                <span class="font-serif font-bold text-xl text-siac-primary tracking-tight">SIEC</span>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="nav-link text-siac-dark font-medium hover:text-siac-primary transition">Home</a>
+                <a href="#about" class="nav-link text-siac-dark font-medium hover:text-siac-primary transition">About</a>
+                <a href="#services" class="nav-link text-siac-dark font-medium hover:text-siac-primary transition">Services</a>
+                <a href="#insights" class="nav-link text-siac-dark font-medium hover:text-siac-primary transition">Insights</a>
+                <a href="#contact" class="nav-link text-siac-dark font-medium hover:text-siac-primary transition">Contact</a>
+                <a href="#contact" class="bg-siac-primary text-white px-6 py-2 rounded-full hover:bg-siac-accent transition shadow-md hover:shadow-lg">Get in touch <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-2xl text-siac-primary focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 py-4 px-6 flex flex-col space-y-4 shadow-lg">
+            <a href="#home" class="nav-link text-siac-dark font-medium py-2">Home</a>
+            <a href="#about" class="nav-link text-siac-dark font-medium py-2">About</a>
+            <a href="#services" class="nav-link text-siac-dark font-medium py-2">Services</a>
+            <a href="#insights" class="nav-link text-siac-dark font-medium py-2">Insights</a>
+            <a href="#contact" class="nav-link text-siac-dark font-medium py-2">Contact</a>
+            <a href="#contact" class="bg-siac-primary text-white text-center px-4 py-2 rounded-full">Get in touch</a>
+        </div>
+    </header>
 
-      </div>
+    <main class="pt-20">
+        <!-- ================= HOME / HERO SECTION ================= -->
+        <section id="home" class="relative min-h-screen flex items-center bg-gradient-to-br from-siac-light via-white to-siac-light overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-20 left-10 w-72 h-72 bg-siac-primary rounded-full blur-3xl"></div>
+                <div class="absolute bottom-20 right-10 w-96 h-96 bg-siac-accent rounded-full blur-3xl"></div>
+            </div>
+            <div class="container mx-auto px-6 lg:px-8 py-20 relative z-10">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="inline-block mb-4 px-4 py-1 bg-siac-primary/10 rounded-full">
+                        <span class="text-siac-primary font-semibold text-sm tracking-wide"><i class="fas fa-leaf mr-2"></i>Towards a sustainable future</span>
+                    </div>
+                    <h1 class="font-serif text-5xl md:text-7xl font-bold text-siac-primary leading-tight mb-6 animate-fade-in-up">
+                        Sustainable Integrated <br>Environmental Consultants
+                    </h1>
+                    <p class="text-xl text-siac-gray max-w-2xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
+                        We provide comprehensive environmental consulting services to help organizations and communities navigate the complex challenges of sustainability and environmental stewardship.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4 animate-fade-in-up animation-delay-300">
+                        <a href="#contact" class="bg-siac-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-siac-accent transition shadow-lg hover:shadow-xl"><i class="fas fa-chalkboard-user mr-2"></i> Start your project</a>
+                        <a href="#services" class="border-2 border-siac-primary text-siac-primary px-8 py-3 rounded-full font-semibold hover:bg-siac-primary hover:text-white transition">Explore services</a>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <i class="fas fa-chevron-down text-siac-primary text-2xl"></i>
+            </div>
+        </section>
 
-    </div>
+        <!-- ================= ABOUT US ================= -->
+        <section id="about" class="py-24 bg-white section-reveal">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-siac-secondary font-semibold tracking-wider text-sm">OUR FOUNDATION</span>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-siac-primary mt-2 mb-6">Where Expertise Meets Purpose</h2>
+                    <div class="w-24 h-1 bg-siac-secondary mx-auto"></div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-siac-gray text-lg mb-6 leading-relaxed">At <span class="font-bold text-siac-primary">Sustainable Integrated Environmental Consultants (SIEC)</span>, we are dedicated to providing comprehensive environmental consulting services. Our team combines scientific expertise, innovative technologies and a client-centric approach to deliver tailored solutions that promote a greener and more sustainable future.</p>
+                        <p class="text-siac-gray text-lg mb-6 leading-relaxed">We understand the critical importance of environmental protection and the need for sustainable practices. Our mission is to help businesses, organizations, and communities achieve their environmental goals while minimizing their ecological footprint.</p>
+                        <div class="grid grid-cols-2 gap-4 mt-8">
+                            <div class="border-l-4 border-siac-secondary pl-4"><span class="font-bold text-3xl text-siac-primary">15+</span><p class="text-siac-gray">Years Excellence</p></div>
+                            <div class="border-l-4 border-siac-secondary pl-4"><span class="font-bold text-3xl text-siac-primary">200+</span><p class="text-siac-gray">Projects Completed</p></div>
+                            <div class="border-l-4 border-siac-secondary pl-4"><span class="font-bold text-3xl text-siac-primary">50+</span><p class="text-siac-gray">Expert Consultants</p></div>
+                            <div class="border-l-4 border-siac-secondary pl-4"><span class="font-bold text-3xl text-siac-primary">4</span><p class="text-siac-gray">Global Offices</p></div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -top-4 -right-4 w-32 h-32 bg-siac-secondary/20 rounded-full z-0"></div>
+                        <div class="absolute -bottom-4 -left-4 w-40 h-40 bg-siac-primary/10 rounded-full z-0"></div>
+                        <div class="relative bg-siac-light p-4 rounded-2xl shadow-2xl">
+                            <img src="https://placehold.co/600x400/2C7A5E/white?text=Sustainability+Meeting" alt="Environmental consultants at work" class="rounded-xl w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  </div>
+        <!-- ================= WHY CHOOSE US + VALUES ================= -->
+        <section class="py-24 bg-siac-light section-reveal">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-siac-primary">Why Choose SIEC</h2>
+                    <p class="text-siac-gray text-lg mt-4">Integrated solutions that set new standards in environmental stewardship.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-sm service-card"><div class="w-14 h-14 bg-siac-primary/10 rounded-full flex items-center justify-center mb-5"><i class="fas fa-flask text-2xl text-siac-primary"></i></div><h3 class="text-xl font-bold text-siac-primary mb-3">Expertise & Experience</h3><p class="text-siac-gray">Extensive experience across energy, infrastructure, manufacturing, and natural resource management.</p></div>
+                    <div class="bg-white p-8 rounded-xl shadow-sm service-card"><div class="w-14 h-14 bg-siac-primary/10 rounded-full flex items-center justify-center mb-5"><i class="fas fa-lightbulb text-2xl text-siac-primary"></i></div><h3 class="text-xl font-bold text-siac-primary mb-3">Innovation & Customization</h3><p class="text-siac-gray">Tailored, practical, cost-effective solutions aligned with latest industry standards.</p></div>
+                    <div class="bg-white p-8 rounded-xl shadow-sm service-card"><div class="w-14 h-14 bg-siac-primary/10 rounded-full flex items-center justify-center mb-5"><i class="fas fa-globe-americas text-2xl text-siac-primary"></i></div><h3 class="text-xl font-bold text-siac-primary mb-3">Sustainability Focus</h3><p class="text-siac-gray">Deep commitment to minimizing environmental impact and enhancing operational efficiency.</p></div>
+                    <div class="bg-white p-8 rounded-xl shadow-sm service-card"><div class="w-14 h-14 bg-siac-primary/10 rounded-full flex items-center justify-center mb-5"><i class="fas fa-clock text-2xl text-siac-primary"></i></div><h3 class="text-xl font-bold text-siac-primary mb-3">Reliable Delivery</h3><p class="text-siac-gray">High-quality results within agreed timelines with proactive attention to detail.</p></div>
+                    <div class="bg-white p-8 rounded-xl shadow-sm service-card"><div class="w-14 h-14 bg-siac-primary/10 rounded-full flex items-center justify-center mb-5"><i class="fas fa-chart-line text-2xl text-siac-primary"></i></div><h3 class="text-xl font-bold text-siac-primary mb-3">Comprehensive Solutions</h3><p class="text-siac-gray">End-to-end from initial assessments to monitoring and compliance.</p></div>
+                    <div class="bg-white p-8 rounded-xl shadow-sm service-card"><div class="w-14 h-14 bg-siac-primary/10 rounded-full flex items-center justify-center mb-5"><i class="fas fa-handshake text-2xl text-siac-primary"></i></div><h3 class="text-xl font-bold text-siac-primary mb-3">Multidisciplinary Approach</h3><p class="text-siac-gray">Experts from environmental science, ecology, engineering, and policy.</p></div>
+                </div>
+            </div>
+        </section>
 
-</section>
+        <!-- ================= SERVICES OVERVIEW ================= -->
+        <section id="services" class="py-24 bg-white section-reveal">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="text-center mb-16"><span class="text-siac-secondary font-semibold">WHAT WE OFFER</span><h2 class="font-serif text-4xl md:text-5xl font-bold text-siac-primary mt-2">Integrated Environmental Services</h2></div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition"><img src="https://placehold.co/600x400/0F3B2C/white?text=Impact+Assessment" class="w-full h-64 object-cover brightness-90 group-hover:scale-105 transition duration-700"><div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6"><div><h3 class="text-white text-2xl font-bold">Environmental Impact Assessment</h3><p class="text-white/80 mt-1 hidden group-hover:block transition">Comprehensive EIA studies for regulatory compliance.</p></div></div></div>
+                    <div class="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition"><img src="https://placehold.co/600x400/2C7A5E/white?text=Sustainability+Strategy" class="w-full h-64 object-cover brightness-90 group-hover:scale-105 transition duration-700"><div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6"><div><h3 class="text-white text-2xl font-bold">Sustainability Strategy</h3><p class="text-white/80 mt-1 hidden group-hover:block">Net-zero roadmaps and ESG frameworks.</p></div></div></div>
+                    <div class="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition"><img src="https://placehold.co/600x400/D4AF37/1A2E25?text=Compliance" class="w-full h-64 object-cover brightness-90 group-hover:scale-105 transition duration-700"><div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6"><div><h3 class="text-white text-2xl font-bold">Regulatory Compliance</h3><p class="text-white/80 mt-1 hidden group-hover:block">Navigate complex environmental laws.</p></div></div></div>
+                </div>
+                <div class="text-center mt-12"><a href="#contact" class="inline-flex items-center text-siac-primary font-semibold border-b-2 border-siac-secondary pb-1 hover:gap-2 transition-all gap-1">View all services <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+        </section>
 
-    <!-- GLOBAL WATER CHALLENGE -->
+        <!-- ================= INSIGHTS / RESOURCES (placeholder) ================= -->
+        <section id="insights" class="py-24 bg-siac-light section-reveal">
+            <div class="container mx-auto px-6 lg:px-8 text-center">
+                <span class="text-siac-secondary font-semibold">KNOWLEDGE CENTER</span>
+                <h2 class="font-serif text-4xl font-bold text-siac-primary mt-2 mb-4">Latest Insights & Case Studies</h2>
+                <p class="text-siac-gray max-w-2xl mx-auto mb-12">Explore our research, white papers, and success stories from around the globe.</p>
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="bg-white rounded-xl shadow p-6"><div class="w-full h-40 bg-siac-primary/20 rounded-lg mb-4 flex items-center justify-center text-siac-primary"><i class="fas fa-file-alt text-4xl"></i></div><p class="text-siac-secondary text-sm">Case Study</p><h3 class="font-bold text-xl my-2">Net-zero transition for manufacturing giant</h3><p class="text-siac-gray">How we reduced carbon footprint by 42%.</p><a href="#" class="inline-block mt-4 text-siac-primary font-semibold">Read more <i class="fas fa-arrow-right text-sm"></i></a></div>
+                    <div class="bg-white rounded-xl shadow p-6"><div class="w-full h-40 bg-siac-primary/20 rounded-lg mb-4 flex items-center justify-center text-siac-primary"><i class="fas fa-chart-line text-4xl"></i></div><p class="text-siac-secondary text-sm">Whitepaper</p><h3 class="font-bold text-xl my-2">The future of ESG in infrastructure</h3><p class="text-siac-gray">Data-driven strategies for 2030.</p><a href="#" class="inline-block mt-4 text-siac-primary font-semibold">Download <i class="fas fa-download"></i></a></div>
+                    <div class="bg-white rounded-xl shadow p-6"><div class="w-full h-40 bg-siac-primary/20 rounded-lg mb-4 flex items-center justify-center text-siac-primary"><i class="fas fa-tree text-4xl"></i></div><p class="text-siac-secondary text-sm">Project Highlight</p><h3 class="font-bold text-xl my-2">Biodiversity conservation in SE Asia</h3><p class="text-siac-gray">Restoring natural habitats.</p><a href="#" class="inline-block mt-4 text-siac-primary font-semibold">Explore project <i class="fas fa-arrow-right"></i></a></div>
+                </div>
+            </div>
+        </section>
 
-<section class="relative py-32 overflow-hidden">
+        <!-- ================= CONTACT & CONVERSION ================= -->
+        <section id="contact" class="py-24 bg-white section-reveal">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-siac-secondary font-semibold">START THE CONVERSATION</span>
+                        <h2 class="font-serif text-4xl md:text-5xl font-bold text-siac-primary mt-2 mb-6">Let’s Build a Sustainable Future Together</h2>
+                        <p class="text-siac-gray text-lg mb-8">Fill out the form and our team of experts will reach out within 24 hours to discuss how SIEC can address your environmental challenges.</p>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4"><div class="w-12 h-12 bg-siac-primary/10 rounded-full flex items-center justify-center"><i class="fas fa-map-marker-alt text-siac-primary"></i></div><div><h4 class="font-bold">Global Headquarters</h4><p class="text-siac-gray">123 Sustainability Avenue, Green City, 10001</p></div></div>
+                            <div class="flex items-center gap-4"><div class="w-12 h-12 bg-siac-primary/10 rounded-full flex items-center justify-center"><i class="fas fa-envelope text-siac-primary"></i></div><div><h4 class="font-bold">Email Us</h4><p class="text-siac-gray">hello@sienvconsult.com</p></div></div>
+                            <div class="flex items-center gap-4"><div class="w-12 h-12 bg-siac-primary/10 rounded-full flex items-center justify-center"><i class="fas fa-phone-alt text-siac-primary"></i></div><div><h4 class="font-bold">Call Direct</h4><p class="text-siac-gray">+1 (555) 876-5423</p></div></div>
+                        </div>
+                    </div>
+                    <div class="bg-siac-light p-8 rounded-2xl shadow-xl">
+                        <form action="#" method="POST" class="space-y-5">
+                            <div><input type="text" placeholder="Full Name *" class="w-full px-5 py-3 rounded-lg border border-gray-200 focus:border-siac-secondary bg-white" required></div>
+                            <div><input type="email" placeholder="Work Email *" class="w-full px-5 py-3 rounded-lg border border-gray-200 focus:border-siac-secondary bg-white" required></div>
+                            <div><input type="text" placeholder="Company / Organization" class="w-full px-5 py-3 rounded-lg border border-gray-200 focus:border-siac-secondary bg-white"></div>
+                            <div><select class="w-full px-5 py-3 rounded-lg border border-gray-200 bg-white"><option>Select a service</option><option>Environmental Impact Assessment</option><option>Sustainability Strategy</option><option>Regulatory Compliance</option><option>Other</option></select></div>
+                            <div><textarea rows="4" placeholder="Tell us about your project..." class="w-full px-5 py-3 rounded-lg border border-gray-200 focus:border-siac-secondary bg-white"></textarea></div>
+                            <button type="submit" class="w-full bg-siac-primary text-white py-3 rounded-lg font-bold hover:bg-siac-accent transition shadow-lg"><i class="fas fa-paper-plane mr-2"></i>Submit inquiry →</button>
+                            <p class="text-xs text-siac-gray text-center">We respect your privacy. No spam, ever.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <div
-    class="absolute top-0 right-0
-    w-[700px]
-    h-[700px]
-    bg-[#2CB8C9]/10
-    rounded-full
-    blur-[150px]">
-  </div>
+    <!-- ================= GLOBAL FOOTER ================= -->
+    <footer class="bg-siac-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div><div class="flex items-center space-x-2 mb-4"><div class="w-8 h-8 bg-siac-secondary rounded-full flex items-center justify-center"><span class="font-bold text-siac-dark">S</span></div><span class="font-serif text-xl font-bold">SIEC</span></div><p class="text-gray-300 text-sm">Sustainable Integrated Environmental Consultants — engineering harmony between progress and planet.</p></div>
+                <div><h4 class="font-bold text-lg mb-4 border-l-4 border-siac-secondary pl-3">Quick Links</h4><ul class="space-y-2 text-gray-300"><li><a href="#home" class="hover:text-siac-secondary transition">Home</a></li><li><a href="#about" class="hover:text-siac-secondary transition">About Us</a></li><li><a href="#services" class="hover:text-siac-secondary transition">Services</a></li><li><a href="#insights" class="hover:text-siac-secondary transition">Insights</a></li></ul></div>
+                <div><h4 class="font-bold text-lg mb-4 border-l-4 border-siac-secondary pl-3">Services</h4><ul class="space-y-2 text-gray-300"><li>EIA & Permitting</li><li>Sustainability & ESG</li><li>Environmental Compliance</li><li>Natural Resource Management</li></ul></div>
+                <div><h4 class="font-bold text-lg mb-4 border-l-4 border-siac-secondary pl-3">Legal</h4><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-siac-secondary transition">Privacy Policy</a></li><li><a href="#" class="hover:text-siac-secondary transition">Terms of Service</a></li><li><a href="#" class="hover:text-siac-secondary transition">Cookie Policy</a></li></ul></div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400 text-sm">© 2025 Sustainable Integrated Environmental Consultants. All rights reserved.</p>
+                <div class="flex space-x-5"><a href="#" class="text-gray-400 hover:text-siac-secondary transition text-xl"><i class="fab fa-linkedin-in"></i></a><a href="#" class="text-gray-400 hover:text-siac-secondary transition text-xl"><i class="fab fa-twitter"></i></a><a href="#" class="text-gray-400 hover:text-siac-secondary transition text-xl"><i class="fab fa-facebook-f"></i></a></div>
+            </div>
+        </div>
+    </footer>
 
-  <div
-    class="absolute bottom-0 left-0
-    w-[500px]
-    h-[500px]
-    bg-[#7BC35A]/10
-    rounded-full
-    blur-[120px]">
-  </div>
+    <!-- JavaScript for Interactivity & Scroll Reveal -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuBtn.innerHTML = mobileMenu.classList.contains('hidden') ? '<i class="fas fa-bars"></i>' : '<i class="fas fa-times"></i>';
+            });
+        }
 
-  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+        // Scroll reveal for sections
+        const revealSections = document.querySelectorAll('.section-reveal');
+        const revealOnScroll = () => {
+            for(let section of revealSections) {
+                const rect = section.getBoundingClientRect();
+                const isRevealed = rect.top < window.innerHeight - 100;
+                if(isRevealed) section.classList.add('revealed');
+            }
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
 
-    <div
-      class="inline-flex items-center gap-3
-      border border-[#2CB8C9]/20
-      rounded-full px-5 py-2">
+        // Smooth anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if(targetId === "#") return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if(mobileMenu && !mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+                }
+            });
+        });
 
-      <div
-        class="w-2 h-2 rounded-full bg-[#2CB8C9]">
-      </div>
-
-      <span
-        class="text-[#2CB8C9]
-        text-xs
-        uppercase
-        section-label">
-
-        Global Water Challenge
-
-      </span>
-
-    </div>
-
-    <h2
-      class="mt-8
-      text-slate-900
-      text-5xl
-      md:text-7xl
-      font-bold
-      leading-tight">
-
-      Every Drop Matters.
-
-      <span class="block text-[#2CB8C9]">
-
-        Every Decision Shapes Tomorrow.
-
-      </span>
-
-    </h2>
-
-    <p
-      class="mt-8
-      text-slate-600
-      text-xl
-      max-w-3xl">
-
-      Rapid industrialization, urban growth,
-      climate change and increasing water demand
-      require smarter treatment, recycling and
-      resource recovery solutions.
-
-    </p>
-
-    <div
-      class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mt-20">
-
-      <div class="bg-white rounded-[32px] p-10 shadow-xl">
-        <h3 class="text-6xl font-bold text-[#2CB8C9]">
-          2.2B+
-        </h3>
-        <p class="mt-4 text-xl">
-          People Lack Safe Water Access
-        </p>
-      </div>
-
-      <div class="bg-white rounded-[32px] p-10 shadow-xl">
-        <h3 class="text-6xl font-bold text-[#2CB8C9]">
-          80%
-        </h3>
-        <p class="mt-4 text-xl">
-          Wastewater Untreated
-        </p>
-      </div>
-
-      <div class="bg-white rounded-[32px] p-10 shadow-xl">
-        <h3 class="text-6xl font-bold text-[#2CB8C9]">
-          70%
-        </h3>
-        <p class="mt-4 text-xl">
-          Industrial Water Usage
-        </p>
-      </div>
-
-      <div class="bg-white rounded-[32px] p-10 shadow-xl">
-        <h3 class="text-6xl font-bold text-[#2CB8C9]">
-          2050
-        </h3>
-        <p class="mt-4 text-xl">
-          Rising Global Demand
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
+        // Header background change on scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 50) header.classList.add('shadow-md', 'bg-white/100');
+            else header.classList.remove('shadow-md', 'bg-white/100');
+        });
+    </script>
 </body>
-
 </html>
-
